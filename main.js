@@ -5,10 +5,10 @@ function preload(){
 }
 
 function setup(){
-    canvas = createCanvas(450, 300);
+    canvas = createCanvas(420, 300);
     canvas.center();
     video = createCapture(VIDEO);
-    video.size(450, 300);
+    video.size(420, 300);
     video.hide();
 
     poseNet = ml5.poseNet(video, modelLoaded);
@@ -22,7 +22,7 @@ function modelLoaded(){
 function gotPoses(results){
     if(results.length > 0){
         console.log(results);
-        noseX=results[0].pose.nose.x;
+        noseX=results[0].pose.nose.x-17;
         noseY=results[0].pose.nose.y;
         console.log("nose x = " + noseX);
         console.log("nose y = " + noseY);
@@ -30,7 +30,7 @@ function gotPoses(results){
 }
 
 function draw(){
-    image(video, 0, 0, 450, 300);
+    image(video, 0, 0, 420, 300);
     image(clown_nose, noseX, noseY, 40, 40);
 }
 
